@@ -12,7 +12,8 @@ const setCategories = async () => {
         // console.log(category.category_name);
         const li = document.createElement('li');
         li.innerHTML = `
-        <a>${category.category_name}</a>
+        <button onclick="loadNews('${category.category_id.length === 0 ? category.category_id('No Data Found') : category.category_id}')">${category.category_name}</button>
+
         `
         allCategories.appendChild(li);
     }
@@ -27,9 +28,10 @@ const loadNews = async (category_id) => {
 }
 
 const displayNews = allNews => {
-    const newsContainer = document.getElementById('news-container')
+    const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = '';
     for (const news of allNews) {
-        console.log(news);
+        // console.log(news);
         const div = document.createElement('div');
         div.classList.add('news');
         div.innerHTML = `
@@ -55,8 +57,13 @@ const displayNews = allNews => {
         `
         newsContainer.appendChild(div);
     }
+
+
 }
-
-
 setCategories()
-loadNews('01')
+// loadNews('01');
+
+
+
+
+
