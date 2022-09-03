@@ -8,22 +8,24 @@ const loadCategories = async () => {
 const setCategories = async () => {
     const data = await loadCategories();
     const allCategories = document.getElementById('all-categories');
-    for (const category of data) {
-        // console.log(category.category_name);
+    data.forEach(category => {
         const li = document.createElement('li');
+        li.classList.add('demo')
         li.innerHTML = `
-        <button onclick="loadNews('${category.category_id}','${category.category_name}' )">${category.category_name}</button>
+        <button onclick="loadNews('${category.category_id}')">${category.category_name}</button>
 
         `
         allCategories.appendChild(li);
-    }
+    })
 }
 
 
 const loadNews = async (category_id, category_name) => {
+    document.getElementById('spinner').classList.remove('hidden');
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
     const res = await fetch(url);
     const data = await res.json();
+    document.getElementById('spinner').classList.add('hidden');
     displayNews(data.data)
     document.getElementById('category-name').innerHTML = `${category_name}`;
     // return data.data;
@@ -34,8 +36,9 @@ const displayNews = allNews => {
     document.getElementById('item-count').innerHTML = `${allNews.length == 0 ? 'No' : allNews.length} items found for `;
     newsContainer.innerHTML = '';
     allNews.length == 0 && (newsContainer.innerHTML = `
-    <h1 class="font-bold text-2xl"> No Data Found! </h1>
+    <h1 class="font-bold text-2xl mt-40 text-center"> No Data Found! </h1>
     `)
+    allNews.sort((a, b) => b.total_view - a.total_view);
     for (const news of allNews) {
         console.log(news);
         const div = document.createElement('div');
@@ -59,20 +62,20 @@ const displayNews = allNews => {
             <div class="card-actions justify-end">
             <div>
             <!-- The button to open modal -->
-            <label for="my-modal-6" class="btn modal-button capitalize">Details</label>
+            <label for="${news._id}" class="btn modal-button capitalize">Details</label>
 
             <!-- Put this part before -->
-            <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+            <input type="checkbox" id="${news._id}" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box" >
-                <img class="rounded-lg" src="${news.author
-                .img}" alt="Movie">
-                    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
-                        for free!</p>
-                        <p>View: ${news.total_view ? news.total_view : 'No Data Found'}</p>
+                <img class="rounded-lg w-full" src="${news.thumbnail_url}" alt="Movie">
+                    <h3 class="font-bold text-lg">Author Name: ${news.author.name ? news.author.name : 'No Data Found'
+            }</h3>
+                    
+                        <h6 class="font-semibold">Total View: ${news.total_view ? news.total_view : 'No Data Found'}</h6>
+                        <p class="py-4">Details: ${news.details}</p>
                     <div class="modal-action">
-                        <label for="my-modal-6" class="btn">Close</label>
+                        <label for="${news._id}" class="btn">Close</label>
                     </div>
                 </div>
             </div>
@@ -90,7 +93,7 @@ document.getElementById('blog').addEventListener('click', function () {
     window.location.href = 'blog.html';
 })
 setCategories()
-loadNews('');
+// loadNews('01');
 
 
 
