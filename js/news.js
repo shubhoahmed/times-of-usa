@@ -1,3 +1,4 @@
+// Load Categories 
 const loadCategories = async () => {
     try {
         const url = `https://openapi.programming-hero.com/api/news/categories`;
@@ -8,7 +9,7 @@ const loadCategories = async () => {
         console.log(error)
     }
 }
-
+// Set Categories
 const setCategories = async () => {
     const data = await loadCategories();
     const allCategories = document.getElementById('all-categories');
@@ -22,8 +23,7 @@ const setCategories = async () => {
         allCategories.appendChild(li);
     })
 }
-
-
+// Load News
 const loadNews = async (category_id, category_name) => {
     document.getElementById('spinner').classList.remove('hidden');
     try {
@@ -38,7 +38,7 @@ const loadNews = async (category_id, category_name) => {
     document.getElementById('category-name').innerHTML = `${category_name}`;
 
 }
-
+// Display News 
 const displayNews = allNews => {
     const newsContainer = document.getElementById('news-container');
     document.getElementById('item-count').innerHTML = `${allNews.length == 0 ? 'No' : allNews.length} items found for `;
@@ -106,9 +106,11 @@ const displayNews = allNews => {
 
 
 }
+//Blog Event Handler
 document.getElementById('blog').addEventListener('click', function () {
     window.location.href = 'blog.html';
 })
+
 setCategories()
 loadNews('01', 'Breaking News');
 
