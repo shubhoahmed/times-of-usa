@@ -1,8 +1,12 @@
 const loadCategories = async () => {
-    const url = `https://openapi.programming-hero.com/api/news/categories`;
-    const res = await fetch(url);
-    const data = await res.json();
-    return data.data.news_category;
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/categories`;
+        const res = await fetch(url);
+        const data = await res.json();
+        return data.data.news_category;
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const setCategories = async () => {
@@ -12,7 +16,7 @@ const setCategories = async () => {
         const li = document.createElement('li');
         li.classList.add('demo')
         li.innerHTML = `
-        <button onclick="loadNews('${category.category_id}')">${category.category_name}</button>
+        <button onclick="loadNews('${category.category_id}','${category.category_name}')">${category.category_name}</button>
 
         `
         allCategories.appendChild(li);
@@ -22,13 +26,17 @@ const setCategories = async () => {
 
 const loadNews = async (category_id, category_name) => {
     document.getElementById('spinner').classList.remove('hidden');
-    const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    document.getElementById('spinner').classList.add('hidden');
-    displayNews(data.data)
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        document.getElementById('spinner').classList.add('hidden');
+        displayNews(data.data)
+    } catch (error) {
+        console.log(error)
+    }
     document.getElementById('category-name').innerHTML = `${category_name}`;
-    // return data.data;
+
 }
 
 const displayNews = allNews => {
@@ -55,7 +63,7 @@ const displayNews = allNews => {
                <img class="inline p-1 rounded-full w-8 h-8" src="${news.author.img}">
                <span>${news.author.name}</span>
                
-               <span class="font-bold ml-24">${news.rating.number}M</span>
+               <span class="font-bold ml-24"> <i class="fa-sharp fa-solid fa-eye"></i> ${news.rating.number}M</span>
                </div>
                 
             </div>
@@ -93,7 +101,7 @@ document.getElementById('blog').addEventListener('click', function () {
     window.location.href = 'blog.html';
 })
 setCategories()
-// loadNews('01');
+loadNews('01', 'Breaking News');
 
 
 
