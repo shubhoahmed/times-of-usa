@@ -7,7 +7,7 @@ const loadCategories = async () => {
 
 const setCategories = async () => {
     const data = await loadCategories();
-    const allCategories = document.getElementById('all- categories');
+    const allCategories = document.getElementById('all-categories');
     for (const category of data) {
         // console.log(category.category_name);
         const li = document.createElement('li');
@@ -51,6 +51,7 @@ const displayNews = allNews => {
                <div>
                <img class="inline p-1 rounded-full w-8 h-8" src="${news.author.img}">
                <span>${news.author.name}</span>
+               
                <span class="font-bold ml-24">${news.rating.number}M</span>
                </div>
                 
@@ -89,7 +90,7 @@ document.getElementById('blog').addEventListener('click', function () {
     window.location.href = 'blog.html';
 })
 setCategories()
-loadNews('01');
+loadNews('');
 
 
 
