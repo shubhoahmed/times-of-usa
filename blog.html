@@ -12,10 +12,98 @@
 
 <body class="container mx-auto">
     <header>
-        <h1>Welcome To My Blog</h1>
+        <h1 class="font-bold mt-5 mb-5 text-4xl text-center">Welcome To <span class="text-orange-600">My Blog</span>
+        </h1>
     </header>
     <main>
         <section>
+            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+                <div class="collapse-title text-xl font-medium">
+                    Differences Between Arrow and Regular Functions.
+                </div>
+                <div class="collapse-content">
+                    <div class="card lg:card-side bg-base-100 shadow-xl">
+                        <div class="card-body">
+                            <h2 class="card-title">Regular Functions</h2>
+                            <ol>
+                                <li> 1. In regular functions the this keyword represented the object that called the
+                                    function, which could be the window, the document, a button or whatever.</li>
+                                <li> 2. The regular function can easily construct objects.</li>
+                                <li>3. Inside the body of a regular function, arguments is a special array-like object
+                                    containing the list of arguments with which the function has been invoked.</li>
+
+                            </ol>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title">Arrow Functions</h2>
+                            <ol>
+                                <li> 1. With arrow functions the this keyword always represents the object that defined
+                                    the
+                                    arrow function.</li>
+                                <li>2. A consequence of this resolved lexically is that an arrow function cannot be used
+                                    as a constructor.</li>
+
+                                <li> 3. On the other side, no arguments special keyword is defined inside an arrow
+                                    function.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+                <div class="collapse-title text-xl font-medium">
+                    Difference between var, let and const keywords in JavaScript.
+                </div>
+                <div class="collapse-content">
+                    <article class="p-4">In JavaScript, We can declare a variable using 3 keywords that are var, let,
+                        and const. In
+                        this
+                        article, I will see the differences between the var, let, and const keywords. <br>
+
+                        <span class="font-semibold">Var keyword in JavaScript:</span> The var is the oldest keyword to
+                        declare a variable in JavaScript. <br>
+
+                        <span class="font-semibold">Scope: </span> Global scoped or function scoped. The scope of the
+                        var keyword is the
+                        global or function
+                        scope. It means variables defined outside the function can be accessed globally, and variables
+                        defined inside a particular function can be accessed within the function. <br> <br>
+
+                        <span class="font-semibold"> let keyword in JavaScript:</span> The let keyword is an improved
+                        version of the var keyword. <br>
+
+                        <span class="font-semibold">Scope: </span> block scoped: The scope of a let variable is only
+                        block scoped. It can’t be accessible
+                        outside the particular block ({block}). Let’s see the below example.
+                        <br> <br>
+                        <span class="font-semibold"> Const keyword in JavaScript:</span> The const keyword has all the
+                        properties that are the same as the let keyword, except the user cannot update it. <br>
+
+                        <span class="font-semibold">Scope: </span> block scoped: When users declare a const variable,
+                        they need to initialize it, otherwise, it returns an error. The user cannot update the const
+                        variable once it is declared.
+                    </article>
+
+                </div>
+            </div>
+            <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+                <div class="collapse-title text-xl font-medium">
+                    Why do we use backticks/ template string in JavaScript?
+                </div>
+                <div class="collapse-content">
+                    <article class="p-4">Backticks are an ES6 feature that allows you to create strings in JavaScript.
+                        Although backticks are mostly used for HTML or code embedding purposes, they also act similar to
+                        single and double quotes. Besides, using backticks makes it easier for string operations. <br>
+                        <p> 1. Easy string concatenation.</p>
+                        <p>2. You don't need to escape single or double quotes.</p>
+                        <p>3. Can write multiline without using the new line character.</p>
+
+
+                    </article>
+
+
+                </div>
+            </div>
             <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
                 <div class="collapse-title text-xl font-medium">
                     Focus me to see content

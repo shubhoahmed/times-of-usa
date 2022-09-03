@@ -89,7 +89,7 @@ document.getElementById('blog').addEventListener('click', function () {
     window.location.href = 'blog.html';
 })
 setCategories()
-// loadNews('01');
+loadNews('01');
 
 
 
