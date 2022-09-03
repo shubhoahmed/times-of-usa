@@ -12,26 +12,32 @@ const setCategories = async () => {
         // console.log(category.category_name);
         const li = document.createElement('li');
         li.innerHTML = `
-        <button onclick="loadNews('${category.category_id.length > 0 ? category.category_id : ('No Data Found')}')">${category.category_name}</button>
+        <button onclick="loadNews('${category.category_id}','${category.category_name}' )">${category.category_name}</button>
 
         `
         allCategories.appendChild(li);
     }
 }
 
-const loadNews = async (category_id) => {
+
+const loadNews = async (category_id, category_name) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data)
+    document.getElementById('category-name').innerHTML = `${category_name}`;
     // return data.data;
 }
 
 const displayNews = allNews => {
     const newsContainer = document.getElementById('news-container');
+    document.getElementById('item-count').innerHTML = `${allNews.length == 0 ? 'No' : allNews.length} items found for `;
     newsContainer.innerHTML = '';
+    allNews.length == 0 && (newsContainer.innerHTML = `
+    <h1 class="font-bold text-2xl"> No Data Found! </h1>
+    `)
     for (const news of allNews) {
-        // console.log(news);
+        console.log(news);
         const div = document.createElement('div');
         div.classList.add('news');
         div.innerHTML = `
@@ -57,11 +63,13 @@ const displayNews = allNews => {
             <!-- Put this part before -->
             <input type="checkbox" id="my-modal-6" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                <img class="rounded-lg" src="${news.thumbnail_url}" alt="Movie">
+                <div class="modal-box" >
+                <img class="rounded-lg" src="${news.author
+                .img}" alt="Movie">
                     <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
                     <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
                         for free!</p>
+                        <p>View: ${news.total_view ? news.total_view : 'No Data Found'}</p>
                     <div class="modal-action">
                         <label for="my-modal-6" class="btn">Close</label>
                     </div>
