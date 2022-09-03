@@ -64,6 +64,15 @@ const displayNews = allNews => {
                <span>${news.author.name}</span>
                
                <span class="font-bold ml-24"> <i class="fa-sharp fa-solid fa-eye"></i> ${news.rating.number}M</span>
+               <span>
+               <div class="rating ml-24">
+               <input type="radio" name="rating-1" class="mask mask-star" />
+               <input type="radio" name="rating-1" class="mask mask-star" checked />
+               <input type="radio" name="rating-1" class="mask mask-star" />
+               <input type="radio" name="rating-1" class="mask mask-star" />
+               <input type="radio" name="rating-1" class="mask mask-star" />
+             </div>
+               </span>
                </div>
                 
             </div>
